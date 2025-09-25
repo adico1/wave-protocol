@@ -1,0 +1,31 @@
+Wave Protocol License
+Copyright (c) 2024 Adi Cohen
+
+OPEN SOURCE WITH RESERVED RIGHTS
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to use,
+copy, modify, and distribute the Software for personal and educational purposes,
+subject to the following conditions:
+
+1. The above copyright notice and this permission notice shall be included in all
+   copies or substantial portions of the Software.
+
+2. RESERVED RIGHTS - The following technologies are proprietary and NOT licensed
+   under this agreement:
+   - Proof-of-harmony mining algorithms
+   - Advanced algorithmic optimizations and efficiency methods
+   - Wave Currency protocol specifications
+   - Advanced frequency formulas beyond those publicly documented
+
+3. COMMERCIAL USE of the basic frequency calculation is permitted.
+
+4. NO WARRANTY - The Software is provided "as is", without warranty of any kind.
+
+5. ATTRIBUTION - Any public use must include attribution: "Based on Wave Protocol by Adi Cohen"
+
+For commercial licensing of reserved technologies, contact the author.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
