@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head><title>Test Frequencies</title></head>
+<body>
+<script>
+function calculateLocally(name) {
+    let freq = 0;
+    for (let c of name) {
+        freq += c.charCodeAt(0) % 100;
+    }
+    return freq;
+}
+
+function checkResonance(freq) {
+    const universe = 562;
+    const harmony = (freq * universe) % 319;
+    const fibonacci = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233];
+    return {
+        frequency: freq,
+        harmony: harmony,
+        resonates: fibonacci.includes(harmony)
+    };
+}
+
+// Test cases
+const tests = [
+    "Adi",
+    "John",
+    "Mary",
+    "Test",
+    "Wave",
+    "עדי"  // Hebrew won't work correctly with client-side
+];
+
+console.log("=== FREQUENCY CALCULATION TESTS ===");
+tests.forEach(name => {
+    const freq = calculateLocally(name);
+    const result = checkResonance(freq);
+    console.log(`Name: ${name}`);
+    console.log(`  Frequency: ${freq} Hz`);
+    console.log(`  Harmony: ${result.harmony}`);
+    console.log(`  Resonates: ${result.resonates}`);
+    console.log("");
+});
+
+// Manual calculation verification
+console.log("=== MANUAL VERIFICATION ===");
+console.log("'Adi' should be:");
+console.log("  A=65%100=65, d=100%100=0, i=105%100=5");
+console.log("  Total: 65+0+5 = 70 Hz");
+console.log("  Harmony: (70*562)%319 = 39340%319 = 113");
+console.log("  Resonates: 113 in Fibonacci? false");
+</script>
+</body>
+</html>

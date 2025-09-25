@@ -118,10 +118,19 @@
         }
 
         function checkResonance(freq) {
-            const universe = 562;
-            const harmony = (freq * universe) % 319;
+            // Multiple resonance checks for better results
+            const checks = {
+                'perfect_world': (freq * 562) % 319,
+                'trust': (freq * 97) % 319,
+                'complete': (freq * 440) % 319,
+                'consciousness': Math.abs(freq - 530) % 144,
+                'life': freq % 18
+            };
+
             const fibonacci = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233];
-            return fibonacci.includes(harmony);
+
+            // Resonate if ANY check matches Fibonacci
+            return Object.values(checks).some(h => fibonacci.includes(h));
         }
 
         document.getElementById('name').addEventListener('keypress', function(e) {
