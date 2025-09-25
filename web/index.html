@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's Your Cosmic Frequency?</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        h1 { font-size: 2.5em; margin-bottom: 10px; }
+        p { font-size: 1.2em; opacity: 0.9; }
+        input {
+            padding: 15px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            width: 300px;
+            margin: 20px 10px;
+        }
+        button {
+            padding: 15px 40px;
+            font-size: 18px;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        button:hover { transform: scale(1.05); }
+        #result {
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            display: none;
+        }
+        .frequency { font-size: 3em; font-weight: bold; }
+        .share { margin-top: 20px; }
+        .share button { margin: 0 5px; padding: 10px 20px; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <h1>🌌 What's Your Cosmic Frequency?</h1>
+    <p>Discover your unique resonance with the Universe in 10 seconds</p>
+
+    <div>
+        <input type="text" id="name" placeholder="Enter your name" autofocus>
+        <button onclick="discover()">Discover</button>
+    </div>
+
+    <div id="result">
+        <div class="frequency" id="freq"></div>
+        <div id="message"></div>
+        <div class="share">
+            <button onclick="shareTwitter()">Share on Twitter</button>
+            <button onclick="copyLink()">Copy Result</button>
+        </div>
+    </div>
+
+    <script src="share.js"></script>
+    <script>
+        function discover() {
+            const name = document.getElementById('name').value;
+            if (!name) return;
+
+            // Simple frequency calculation
+            let freq = 0;
+            for (let c of name) {
+                freq += c.charCodeAt(0) % 100;
+            }
+
+            const universe = 562;
+            const harmony = (freq * universe) % 319;
+            const fibonacci = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233];
+            const resonates = fibonacci.includes(harmony);
+
+            document.getElementById('freq').textContent = freq + ' Hz';
+            document.getElementById('message').textContent = resonates ?
+                '✨ You resonate perfectly with the Universe!' :
+                '🌟 Your unique frequency creates new harmonics!';
+            document.getElementById('result').style.display = 'block';
+
+            window.userResult = { name, freq, resonates };
+        }
+
+        document.getElementById('name').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') discover();
+        });
+    </script>
+</body>
+</html>
