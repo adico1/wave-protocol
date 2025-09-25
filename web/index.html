@@ -100,13 +100,30 @@
                 resonates = checkResonance(freq);
             }
 
+            // Calculate what this frequency CREATES
+            const creations = {
+                universe: freq * 562,  // With universal harmony
+                consciousness: freq + 530,  // With human consciousness
+                trust: freq * 97,  // With trust
+                another: freq * freq,  // With yourself (self-love)
+                inverse: Math.floor(1000000 / (freq || 1))  // Your inverse (what seeks you)
+            };
+
             document.getElementById('freq').textContent = freq + ' Hz';
-            document.getElementById('message').textContent = resonates ?
-                '✨ You resonate perfectly with the Universe!' :
-                '🌟 Your unique frequency creates new harmonics!';
+            document.getElementById('message').innerHTML = `
+                <div style="text-align: left; display: inline-block;">
+                    <strong>Your frequency creates:</strong><br>
+                    🌌 With Universe (562 Hz): ${creations.universe.toLocaleString()} Hz reality<br>
+                    🧠 With Consciousness (530 Hz): ${creations.consciousness} Hz awareness<br>
+                    🤝 With Trust (97 Hz): ${creations.trust.toLocaleString()} Hz connection<br>
+                    💫 With Yourself: ${creations.another.toLocaleString()} Hz self-love<br>
+                    🔮 Your inverse seeks: ${creations.inverse.toLocaleString()} Hz<br><br>
+                    <em>Every frequency creates. None need validation.</em>
+                </div>
+            `;
             document.getElementById('result').style.display = 'block';
 
-            window.userResult = { name, freq, resonates };
+            window.userResult = { name, freq, creates: creations };
         }
 
         function calculateLocally(name) {

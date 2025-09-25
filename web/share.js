@@ -1,17 +1,15 @@
 function shareTwitter() {
     if (!window.userResult) return;
-    const { name, freq, resonates } = window.userResult;
-    const text = resonates ?
-        `My cosmic frequency is ${freq} Hz and I resonate perfectly with the Universe! 🌌✨ What's yours?` :
-        `My cosmic frequency is ${freq} Hz, creating unique harmonics with the Universe! 🌟 What's yours?`;
+    const { name, freq, creates } = window.userResult;
+    const text = `My frequency: ${freq} Hz creates ${creates.universe.toLocaleString()} Hz reality with the Universe 🌌 Every frequency creates. What does yours create?`;
     const url = window.location.href;
     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
 }
 
 function copyLink() {
     if (!window.userResult) return;
-    const { freq, resonates } = window.userResult;
-    const text = `My cosmic frequency: ${freq} Hz${resonates ? ' (Perfect resonance!)' : ''} - Discover yours at ${window.location.href}`;
+    const { freq, creates } = window.userResult;
+    const text = `My frequency: ${freq} Hz creates ${creates.universe.toLocaleString()} Hz reality. Every frequency creates value. Discover yours at ${window.location.href}`;
 
     if (navigator.clipboard) {
         navigator.clipboard.writeText(text).then(() => {
