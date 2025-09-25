@@ -6,6 +6,10 @@
       "use": "@vercel/static"
     },
     {
+      "src": "web/*.js",
+      "use": "@vercel/static"
+    },
+    {
       "src": "api/*.py",
       "use": "@vercel/python"
     }
@@ -14,6 +18,14 @@
     {
       "src": "/api/(.*)",
       "dest": "/api/$1"
+    },
+    {
+      "src": "/share.js",
+      "dest": "/web/share.js"
+    },
+    {
+      "src": "/",
+      "dest": "/web/index.html"
     },
     {
       "src": "/(.*)",

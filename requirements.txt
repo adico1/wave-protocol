@@ -1,0 +1,2 @@
+# Wave Protocol API Requirements
+# Minimal dependencies for maximum simplicity
