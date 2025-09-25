@@ -41,5 +41,3 @@ result = resonate("Your Name")
 This is open source. The math is public. The value is in the network, not the code.
 
 ---
-
-*Question × Answer = 1*
