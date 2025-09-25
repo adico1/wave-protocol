@@ -69,20 +69,36 @@
 
     <script src="share.js"></script>
     <script>
-        function discover() {
+        async function discover() {
             const name = document.getElementById('name').value;
             if (!name) return;
 
-            // Simple frequency calculation
-            let freq = 0;
-            for (let c of name) {
-                freq += c.charCodeAt(0) % 100;
-            }
+            // Check if Hebrew characters present
+            const hasHebrew = /[\u0590-\u05FF]/.test(name);
 
-            const universe = 562;
-            const harmony = (freq * universe) % 319;
-            const fibonacci = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233];
-            const resonates = fibonacci.includes(harmony);
+            let freq, resonates;
+
+            if (hasHebrew && window.location.hostname !== 'localhost') {
+                // Use API for Hebrew (when deployed)
+                try {
+                    const response = await fetch('/api/resonate', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({name: name})
+                    });
+                    const data = await response.json();
+                    freq = data.your_frequency;
+                    resonates = data.resonates;
+                } catch (e) {
+                    // Fallback to client calculation
+                    freq = calculateLocally(name);
+                    resonates = checkResonance(freq);
+                }
+            } else {
+                // Client-side for non-Hebrew
+                freq = calculateLocally(name);
+                resonates = checkResonance(freq);
+            }
 
             document.getElementById('freq').textContent = freq + ' Hz';
             document.getElementById('message').textContent = resonates ?
@@ -91,6 +107,21 @@
             document.getElementById('result').style.display = 'block';
 
             window.userResult = { name, freq, resonates };
+        }
+
+        function calculateLocally(name) {
+            let freq = 0;
+            for (let c of name) {
+                freq += c.charCodeAt(0) % 100;
+            }
+            return freq;
+        }
+
+        function checkResonance(freq) {
+            const universe = 562;
+            const harmony = (freq * universe) % 319;
+            const fibonacci = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233];
+            return fibonacci.includes(harmony);
         }
 
         document.getElementById('name').addEventListener('keypress', function(e) {
